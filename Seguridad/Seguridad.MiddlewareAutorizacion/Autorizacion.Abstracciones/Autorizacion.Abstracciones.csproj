@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <Version>1.0.0</Version>
+	  <Version>2.0.0</Version>
 	  <PackageId>Autorizacion.Abstracciones.GravynJimLun</PackageId>
 	  <Authors>GravynJimLun</Authors>
 	  <Description>Lógica de negocio del paquete de autorización. Agrega perfiles del usuario como claims al ClaimsPrincipal</Description>
