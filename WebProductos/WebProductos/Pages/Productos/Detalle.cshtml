@@ -1,0 +1,92 @@
+﻿@page
+@model WebProductos.Pages.Productos.DetalleModel
+@{
+}
+
+<header class="py-4 bg-dark text-white text-center shadow mb-4">
+    <div class="container">
+        <h1 class="fw-bold">
+            Detalle del Producto
+        </h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-header bg-gradient text-black">
+                    <h4 class="mb-0">
+                        @Html.DisplayFor(model => model.producto.Nombre)
+                    </h4>
+                </div>
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-4">
+                        @Html.DisplayFor(model => model.producto.Descripcion)
+                    </p>
+
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.producto.CodigoBarras)
+                                </strong>
+                            </span>
+                            <span>
+                                @Html.DisplayFor(model => model.producto.CodigoBarras)
+                            </span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.producto.Precio)
+                                </strong>
+                            </span>
+                            <span class="fw-bold text-success">
+                                ₡ @Html.DisplayFor(model => model.producto.Precio)
+                            </span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.producto.Stock)
+                                </strong>
+                            </span>
+                            <span>
+                                @Html.DisplayFor(model => model.producto.Stock)
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="card-footer bg-white d-flex justify-content-between">
+
+                    <a class="btn btn-secondary"
+                           asp-page="./Index">
+                        Volver
+                    </a>
+
+                    <div>
+                        <a class="btn btn-warning"
+                               asp-page="./Editar"
+                               asp-route-id="@Model.producto.Id">
+                            Editar
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
