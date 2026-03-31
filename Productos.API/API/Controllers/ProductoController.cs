@@ -1,12 +1,14 @@
 ﻿using Abstracciones.Interfaces.API;
 using Abstracciones.Interfaces.Flujo;
 using Abstracciones.Modelos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductoController : ControllerBase, IProductoController
     {
         private IProductoFlujo _productoFlujo;
@@ -19,6 +21,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="2")]
         public async Task<IActionResult> Agregar([FromBody] ProductoRequest producto)
         {
             var resultado = await _productoFlujo.Agregar(producto);
@@ -34,6 +37,7 @@ namespace API.Controllers
             return Ok(resultado);
         }
         [HttpDelete("{Id}")]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> Eliminar([FromRoute] Guid Id)
         {
             var resultado = await _productoFlujo.Eliminar(Id);
