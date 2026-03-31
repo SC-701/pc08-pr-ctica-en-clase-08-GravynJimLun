@@ -11,4 +11,11 @@
     <ProjectReference Include="..\Reglas\Reglas.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autorizacion.Abstracciones.GravynJimLun" Version="1.0.0" />
+    <PackageReference Include="Autorizacion.DA.GravynJimLun" Version="1.0.0" />
+    <PackageReference Include="Autorizacion.Flujo.GravynJimLun" Version="1.0.0" />
+    <PackageReference Include="Autorizacion.Middleware.GravynJimLun" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>
