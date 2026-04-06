@@ -18,4 +18,8 @@
     <PackageReference Include="Autorizacion.Middleware.GravynJimLun" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Seguridad\" />
+  </ItemGroup>
+
 </Project>

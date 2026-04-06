@@ -1,11 +1,13 @@
 using Abstracciones.Interfaces.Reglas;
 using Abstracciones.Modelos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace WebProductos.Pages.Productos
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private IConfiguracion _configuracion;
@@ -19,7 +21,7 @@ namespace WebProductos.Pages.Productos
         public async Task OnGet()
         {
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerProductos");
-            var cliente = new HttpClient();
+            using var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Get, endpoint);
 
             var respuesta = await  cliente.SendAsync(solicitud);
@@ -30,6 +32,19 @@ namespace WebProductos.Pages.Productos
             { PropertyNameCaseInsensitive = true };
             productos=JsonSerializer.Deserialize<List<ProductoResponse>>(resultado, opciones);
 
+        }
+
+        // ★ Helper — extrae el JWT de los claims y configura el HttpClient
+        private HttpClient ObtenerClienteConToken()
+        {
+            var tokenClaim = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == "Token");
+            var cliente = new HttpClient();
+            if (tokenClaim != null)
+                cliente.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue(
+                        "Bearer", tokenClaim.Value);
+            return cliente;
         }
     }
 }
